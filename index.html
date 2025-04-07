@@ -516,6 +516,7 @@
                             modal.querySelector('.close-modal').addEventListener('click', () => {
                                 modal.remove();
                                 currentModal = null;
+                                document.body.style.overflow = ''; // Re-enable scrolling
                             });
 
                             // Handle consultation button click
@@ -535,6 +536,7 @@
                                 if (e.target === modal) {
                                     modal.remove();
                                     currentModal = null;
+                                    document.body.style.overflow = ''; // Re-enable scrolling
                                 }
                             });
 
@@ -548,7 +550,7 @@
                         if (e.key === 'Escape' && currentModal) {
                             currentModal.remove();
                             currentModal = null;
-                            document.body.style.overflow = '';
+                            document.body.style.overflow = ''; // Re-enable scrolling
                         }
                     });
                 });
