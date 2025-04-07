@@ -524,7 +524,8 @@
                                 e.preventDefault();
                                 modal.remove();
                                 currentModal = null;
-                                
+                                document.body.style.overflow = ''; // Re-enable scrolling
+
                                 // Set service dropdown value and scroll to contact
                                 const serviceSelect = document.getElementById('service');
                                 serviceSelect.value = serviceId;
