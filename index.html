@@ -161,6 +161,7 @@
             <a href="#" class="text-2xl font-['Pacifico'] text-primary">ACE Global</a>
             
             <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-primary transition-colors">Home</a>
                 <a href="#about" class="text-gray-700 hover:text-primary transition-colors">About</a>
                 <a href="#services" class="text-gray-700 hover:text-primary transition-colors">Services</a>
                 <a href="#why-us" class="text-gray-700 hover:text-primary transition-colors">Why Choose Us</a>
@@ -188,7 +189,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section min-h-screen flex items-center text-white">
+    <section id="home" class="hero-section min-h-screen flex items-center text-white">
         <div class="container mx-auto px-4 py-20 md:py-0 w-full">
             <div class="max-w-3xl animate-on-scroll">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Empowering Africans Through Global Education</h1>
@@ -303,7 +304,29 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Service 1 -->
-                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll stagger-delay-1">
+                <!-- Service cards with modals -->
+                <template id="service-modal-template">
+                    <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+                        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+                            <div class="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
+                                <h3 class="text-2xl font-bold text-primary modal-title"></h3>
+                                <button class="close-modal text-gray-500 hover:text-gray-700">
+                                    <i class="ri-close-line ri-2x"></i>
+                                </button>
+                            </div>
+                            <div class="modal-content p-6">
+                                <img class="w-full h-64 object-cover object-center rounded-lg mb-6 modal-image" alt="">
+                                <div class="modal-details space-y-4"></div>
+                                <div class="mt-8 text-center">
+                                    <a href="#contact" class="book-consultation bg-primary text-white px-8 py-3 rounded-button font-semibold hover:bg-opacity-90 transition-all inline-block">Book Consultation</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Study Abroad Service Card -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll stagger-delay-1" data-service="study-abroad">
                     <div class="h-48 overflow-hidden">
                         <img src="https://public.readdy.ai/ai/img_res/b98db3385e520cffc7568ddf51ea8dbf.jpg" alt="Study Abroad Consultation" class="w-full h-full object-cover object-top">
                     </div>
@@ -312,16 +335,15 @@
                             <i class="ri-flight-takeoff-line ri-xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3">Study Abroad Consultation</h3>
-                        <p class="text-gray-600 mb-4">Personalized guidance on university selection, application processes, and scholarship opportunities tailored to your academic goals and preferences.</p>
-                        <a href="#" class="text-primary font-semibold flex items-center">
-                            Learn More
-                            <i class="ri-arrow-right-line ml-2"></i>
-                        </a>
+                        <p class="text-gray-600 mb-4">Personalized guidance on university selection, application processes, and scholarship opportunities.</p>
+                        <button class="text-primary font-semibold flex items-center learn-more">
+                            Learn More <i class="ri-arrow-right-line ml-2"></i>
+                        </button>
                     </div>
                 </div>
-                
-                <!-- Service 2 -->
-                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll stagger-delay-2">
+
+                <!-- Visa Assistance Card -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll stagger-delay-2" data-service="visa">
                     <div class="h-48 overflow-hidden">
                         <img src="https://public.readdy.ai/ai/img_res/fd7bd9477740a2613803cc4b29e8512a.jpg" alt="Visa Assistance" class="w-full h-full object-cover object-top">
                     </div>
@@ -330,34 +352,32 @@
                             <i class="ri-passport-line ri-xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3">Visa Assistance</h3>
-                        <p class="text-gray-600 mb-4">Expert support throughout the visa application process, including documentation preparation, interview coaching, and application review.</p>
-                        <a href="#" class="text-primary font-semibold flex items-center">
-                            Learn More
-                            <i class="ri-arrow-right-line ml-2"></i>
-                        </a>
+                        <p class="text-gray-600 mb-4">Expert guidance through the student visa application process and documentation.</p>
+                        <button class="text-primary font-semibold flex items-center learn-more">
+                            Learn More <i class="ri-arrow-right-line ml-2"></i>
+                        </button>
                     </div>
                 </div>
-                
-                <!-- Service 3 -->
-                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll stagger-delay-3">
+
+                <!-- Test Preparation Card -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll stagger-delay-3" data-service="test-prep">
                     <div class="h-48 overflow-hidden">
                         <img src="https://public.readdy.ai/ai/img_res/8d1249eef9d69e606ec5133be601a84b.jpg" alt="Test Preparation" class="w-full h-full object-cover object-top">
                     </div>
                     <div class="p-6">
                         <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary mb-4">
-                            <i class="ri-file-list-3-line ri-xl"></i>
+                            <i class="ri-book-open-line ri-xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3">Test Preparation</h3>
-                        <p class="text-gray-600 mb-4">Comprehensive preparation programs for IELTS, TOEFL, GRE, GMAT, and other standardized tests with experienced instructors and practice materials.</p>
-                        <a href="#" class="text-primary font-semibold flex items-center">
-                            Learn More
-                            <i class="ri-arrow-right-line ml-2"></i>
-                        </a>
+                        <p class="text-gray-600 mb-4">Comprehensive preparation for IELTS, TOEFL, GRE, GMAT, and other standardized tests.</p>
+                        <button class="text-primary font-semibold flex items-center learn-more">
+                            Learn More <i class="ri-arrow-right-line ml-2"></i>
+                        </button>
                     </div>
                 </div>
-                
-                <!-- Service 4 -->
-                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll stagger-delay-1">
+
+                <!-- Career Counseling Card -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll stagger-delay-4" data-service="career">
                     <div class="h-48 overflow-hidden">
                         <img src="https://public.readdy.ai/ai/img_res/2efb5a66b4be3e0919d46ed468d63531.jpg" alt="Career Counseling" class="w-full h-full object-cover object-top">
                     </div>
@@ -366,16 +386,15 @@
                             <i class="ri-briefcase-line ri-xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3">Career Counseling</h3>
-                        <p class="text-gray-600 mb-4">Strategic career planning, resume building, interview preparation, and networking guidance to help you achieve your professional goals.</p>
-                        <a href="#" class="text-primary font-semibold flex items-center">
-                            Learn More
-                            <i class="ri-arrow-right-line ml-2"></i>
-                        </a>
+                        <p class="text-gray-600 mb-4">Professional guidance for career planning and development opportunities abroad.</p>
+                        <button class="text-primary font-semibold flex items-center learn-more">
+                            Learn More <i class="ri-arrow-right-line ml-2"></i>
+                        </button>
                     </div>
                 </div>
-                
-                <!-- Service 5 -->
-                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll stagger-delay-2">
+
+                <!-- Travel & Cultural Exposure Card -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll stagger-delay-5" data-service="travel">
                     <div class="h-48 overflow-hidden">
                         <img src="https://public.readdy.ai/ai/img_res/f78dee04f774bccdcb8c90d8b905625d.jpg" alt="Travel & Cultural Exposure" class="w-full h-full object-cover object-top">
                     </div>
@@ -384,31 +403,156 @@
                             <i class="ri-earth-line ri-xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3">Travel & Cultural Exposure</h3>
-                        <p class="text-gray-600 mb-4">Organized cultural exchange programs, educational tours, and immersion experiences to broaden your global perspective.</p>
-                        <a href="#" class="text-primary font-semibold flex items-center">
-                            Learn More
-                            <i class="ri-arrow-right-line ml-2"></i>
-                        </a>
+                        <p class="text-gray-600 mb-4">Cultural integration programs and travel assistance for international students.</p>
+                        <button class="text-primary font-semibold flex items-center learn-more">
+                            Learn More <i class="ri-arrow-right-line ml-2"></i>
+                        </button>
                     </div>
                 </div>
-                
-                <!-- Service 6 -->
-                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll stagger-delay-3">
+
+                <!-- Mentorship Programs Card -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll stagger-delay-6" data-service="mentorship">
                     <div class="h-48 overflow-hidden">
                         <img src="https://public.readdy.ai/ai/img_res/97a9f9facca020582299f935e4bbcb8d.jpg" alt="Mentorship Programs" class="w-full h-full object-cover object-top">
                     </div>
                     <div class="p-6">
                         <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary mb-4">
-                            <i class="ri-user-follow-line ri-xl"></i>
+                            <i class="ri-user-star-line ri-xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3">Mentorship Programs</h3>
-                        <p class="text-gray-600 mb-4">Connect with successful professionals and alumni who provide guidance, insights, and support throughout your educational journey.</p>
-                        <a href="#" class="text-primary font-semibold flex items-center">
-                            Learn More
-                            <i class="ri-arrow-right-line ml-2"></i>
-                        </a>
+                        <p class="text-gray-600 mb-4">One-on-one guidance from experienced mentors in your field of interest.</p>
+                        <button class="text-primary font-semibold flex items-center learn-more">
+                            Learn More <i class="ri-arrow-right-line ml-2"></i>
+                        </button>
                     </div>
                 </div>
+
+                <script>
+                // Service details object
+                const serviceDetails = {
+                    'study-abroad': {
+                        title: 'Study Abroad Consultation',
+                        image: 'https://public.readdy.ai/ai/img_res/b98db3385e520cffc7568ddf51ea8dbf.jpg',
+                        details: [
+                            '<h4 class="text-xl font-semibold mb-2">Comprehensive University Selection</h4>',
+                            '<p class="text-gray-700">Our expert consultants work closely with you to identify universities that match your academic profile, career goals, and personal preferences.</p>',
+                            '<ul class="list-disc ml-6 my-3 text-gray-700"><li>Academic requirements</li><li>Program specializations</li><li>Location preferences</li><li>Budget considerations</li><li>Career opportunities</li></ul>',
+                            '<h4 class="text-xl font-semibold mb-2 mt-6">Application Support</h4>',
+                            '<p class="text-gray-700">We provide end-to-end application assistance, including:</p>',
+                            '<ul class="list-disc ml-6 my-3 text-gray-700"><li>Document preparation and review</li><li>Personal statement guidance</li><li>Application strategy development</li><li>Timeline management</li></ul>'
+                        ]
+                    },
+                    'visa': {
+                        title: 'Visa Assistance',
+                        image: 'https://public.readdy.ai/ai/img_res/fd7bd9477740a2613803cc4b29e8512a.jpg',
+                        details: [
+                            '<h4 class="text-xl font-semibold mb-2">Comprehensive Visa Support</h4>',
+                            '<p class="text-gray-700">Expert guidance through the entire student visa application process:</p>',
+                            '<ul class="list-disc ml-6 my-3 text-gray-700"><li>Document preparation</li><li>Application review</li><li>Interview preparation</li><li>Timeline management</li></ul>'
+                        ]
+                    },
+                    'test-prep': {
+                        title: 'Test Preparation',
+                        image: 'https://public.readdy.ai/ai/img_res/8d1249eef9d69e606ec5133be601a84b.jpg',
+                        details: [
+                            '<h4 class="text-xl font-semibold mb-2">Comprehensive Test Preparation</h4>',
+                            '<p class="text-gray-700">Specialized coaching for:</p>',
+                            '<ul class="list-disc ml-6 my-3 text-gray-700"><li>IELTS/TOEFL</li><li>GRE/GMAT</li><li>SAT/ACT</li><li>Custom study plans</li></ul>'
+                        ]
+                    },
+                    'career': {
+                        title: 'Career Counseling',
+                        image: 'https://public.readdy.ai/ai/img_res/2efb5a66b4be3e0919d46ed468d63531.jpg',
+                        details: [
+                            '<h4 class="text-xl font-semibold mb-2">Career Development Services</h4>',
+                            '<p class="text-gray-700">Professional guidance for:</p>',
+                            '<ul class="list-disc ml-6 my-3 text-gray-700"><li>Career planning</li><li>Resume building</li><li>Interview preparation</li><li>Networking strategies</li></ul>'
+                        ]
+                    },
+                    'travel': {
+                        title: 'Travel & Cultural Exposure',
+                        image: 'https://public.readdy.ai/ai/img_res/f78dee04f774bccdcb8c90d8b905625d.jpg',
+                        details: [
+                            '<h4 class="text-xl font-semibold mb-2">Cultural Integration Programs</h4>',
+                            '<p class="text-gray-700">Comprehensive support for:</p>',
+                            '<ul class="list-disc ml-6 my-3 text-gray-700"><li>Cultural orientation</li><li>Travel arrangements</li><li>Accommodation assistance</li><li>Local support services</li></ul>'
+                        ]
+                    },
+                    'mentorship': {
+                        title: 'Mentorship Programs',
+                        image: 'https://public.readdy.ai/ai/img_res/97a9f9facca020582299f935e4bbcb8d.jpg',
+                        details: [
+                            '<h4 class="text-xl font-semibold mb-2">Personalized Mentorship</h4>',
+                            '<p class="text-gray-700">One-on-one guidance including:</p>',
+                            '<ul class="list-disc ml-6 my-3 text-gray-700"><li>Academic mentoring</li><li>Career guidance</li><li>Personal development</li><li>Networking opportunities</li></ul>'
+                        ]
+                    }
+                };
+
+                // Modal functionality
+                document.addEventListener('DOMContentLoaded', function() {
+                    const template = document.getElementById('service-modal-template');
+                    let currentModal = null;
+
+                    // Handle learn more clicks
+                    document.querySelectorAll('.learn-more').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const serviceCard = this.closest('.service-card');
+                            const serviceId = serviceCard.dataset.service;
+                            const serviceInfo = serviceDetails[serviceId];
+
+                            // Create modal from template
+                            const modal = template.content.cloneNode(true).children[0];
+                            document.body.appendChild(modal);
+                            currentModal = modal;
+
+                            // Populate modal content
+                            modal.querySelector('.modal-title').textContent = serviceInfo.title;
+                            modal.querySelector('.modal-image').src = serviceInfo.image;
+                            modal.querySelector('.modal-image').alt = serviceInfo.title;
+                            modal.querySelector('.modal-details').innerHTML = serviceInfo.details.join('');
+
+                            // Handle modal close
+                            modal.querySelector('.close-modal').addEventListener('click', () => {
+                                modal.remove();
+                                currentModal = null;
+                            });
+
+                            // Handle consultation button click
+                            modal.querySelector('.book-consultation').addEventListener('click', function(e) {
+                                e.preventDefault();
+                                modal.remove();
+                                currentModal = null;
+                                
+                                // Set service dropdown value and scroll to contact
+                                const serviceSelect = document.getElementById('service');
+                                serviceSelect.value = serviceId;
+                                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                            });
+
+                            // Close modal on outside click
+                            modal.addEventListener('click', function(e) {
+                                if (e.target === modal) {
+                                    modal.remove();
+                                    currentModal = null;
+                                }
+                            });
+
+                            // Prevent body scroll when modal is open
+                            document.body.style.overflow = 'hidden';
+                        });
+                    });
+
+                    // Handle escape key
+                    document.addEventListener('keydown', function(e) {
+                        if (e.key === 'Escape' && currentModal) {
+                            currentModal.remove();
+                            currentModal = null;
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+                </script>
             </div>
         </div>
     </section>
