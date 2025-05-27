@@ -1,0 +1,25 @@
+{
+  "name": "agency",
+  "version": "1.0.0",
+  "description": "COEMAB GLOBAL CONSULT is a website designed to provide personalized academic guidance and international opportunities for African students and professionals. The platform offers a range of services, including study abroad consultations, visa assistance, test preparation, career counseling, and more.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KNOLLY54/agency.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KNOLLY54/agency/issues"
+  },
+  "homepage": "https://github.com/KNOLLY54/agency#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.7"
+  }
+}
